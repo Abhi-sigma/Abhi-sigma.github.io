@@ -268,6 +268,7 @@
 
 
 			  {x: parseInt(initialPositionX+55*5)  , y: 260,elevation:-5,direction:1},
+			  {x: parseInt(initialPositionX+55*6)  , y: 260,elevation:4,direction:1}
 			  {x: parseInt(initialPositionX+55*8) , y: 260,elevation:-4,direction:1},
 			  {x: parseInt(initialPositionX+55*1) , y: 260,elevation:-4,direction:2},
 		  ]},
@@ -300,6 +301,7 @@
 		// run this function after 2 secs
 		// update position so that you can check direction
 		updatePosition(player.style.left,player.style.top);
+		TopRowCheck();
 		setTimeout(function(){
 		var row=findRow();
 		if(snakesAndLadder.hasOwnProperty(row)){
