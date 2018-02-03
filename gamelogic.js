@@ -268,7 +268,7 @@
 
 
 			  {x: parseInt(initialPositionX+55*5)  , y: 260,elevation:-5,direction:1},
-			  {x: parseInt(initialPositionX+55*6)  , y: 260,elevation:4,direction:1}
+			  {x: parseInt(initialPositionX+55*6)  , y: 260,elevation:4,direction:1},
 			  {x: parseInt(initialPositionX+55*8) , y: 260,elevation:-4,direction:1},
 			  {x: parseInt(initialPositionX+55*1) , y: 260,elevation:-4,direction:2},
 		  ]},
