@@ -326,19 +326,25 @@
 
 	function TopRowCheck(steps){
 		if(currentPosition.y<60){
-						if(currentPosition.x>initialPositionX){
-							player.style.left=+getPosition().x-(55*steps)+"px";
-							updatePosition(player.style.left,player.style.top);
-							checkSnakesLadder();
-							if(currentPosition.x<initialPositionX){
-								player.style.left=initialPositionX+"px";
-								alert("home");
-								reset();
-							}
-							updatePosition(player.style.left,player.style.top);
-							checkSnakesLadder();
-							return true
-						}
+			if(currentPosition.x <= initialPositionX+1 &&
+				currentPosition.x >= initialPositionX+1){
+				alert("home");
+				reset();
+
+			}
+			if(currentPosition.x>initialPositionX){
+				player.style.left=+getPosition().x-(55*steps)+"px";
+				updatePosition(player.style.left,player.style.top);
+				checkSnakesLadder();
+				if(currentPosition.x<=initialPositionX){
+					player.style.left=initialPositionX+"px";
+					alert("home");
+					reset();
+				}
+				updatePosition(player.style.left,player.style.top);
+				checkSnakesLadder();
+				return true
+			}
 
 					}
 	}
