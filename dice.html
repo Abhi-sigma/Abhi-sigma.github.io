@@ -1,0 +1,53 @@
+<style>
+
+
+</style>
+
+
+
+
+<script>
+	function selectDiceFace(){
+		// initialise all the dice face to display:none
+		// this makes sure all the dice face are not displayed by default
+		// even if they appeared in previous rolls
+		var button=document.querySelectorAll(".roll-button")[0];
+		button.style.display="none";
+		var elementArray=document.querySelectorAll(".side-pic");
+		elementArray.forEach(function(element){
+			element.style.display="none"
+		});
+		var randomSelect =Math.floor(Math.random()*Math.floor(7));
+	    // if block to avoid fail cases when roll results in 0
+	    //
+		if (randomSelect>0){
+			var visibleFace=elementArray[randomSelect-1];
+		}
+		else{
+			var visibleFace=elementArray[randomSelect];
+		}
+		visibleFace.style.display ="block";
+		button.style.display ="block";
+		console.log(visibleFace.dataset.dice);
+		animateDice();
+
+		return visibleFace.dataset.dice
+	}
+
+	function animateDice(){
+		var animatingDice = document.querySelectorAll(".cube")[0];
+		if(animatingDice.indexof("cube-animation") == -1){
+			animatingDice.classList.add("cube-animation");
+		}
+		else{
+			animatingDice.classList.remove("cube-animation");
+
+		}
+			animatingDice.classList.add("cube-animation");
+		}
+		return
+
+
+	}
+	window.onload=selectDiceFace();
+</script>

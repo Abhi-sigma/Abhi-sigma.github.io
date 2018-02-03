@@ -1,0 +1,223 @@
+html,body{
+width:100%;
+height:100%;
+margin:0px;
+padding:0px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: potrait) {
+  html {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+}
+
+
+.board-container{
+	background-image: url(board_background.jpg);
+	width:600px;
+	height:600px;
+	background-repeat: no-repeat;
+	background-position: center;
+    margin:0 auto;
+}
+
+ .grid{
+    position: relative;
+    left: 25px;
+    top: 25px;
+    width: 539px;
+    height: 547px;
+    margin: 5px;
+    /*background-color: #0000ff94;*/
+    /* border-radius: 50%; */
+
+}
+
+.horizontal-row{
+   /*background-color: #02041945;*/
+    position: relative;
+    width: 100%;
+    height: 52px;
+    /* margin: 2px; */
+}
+
+.individual-square{
+    /*background-color: #ff000080;*/
+    width:50px;
+    height:100%;
+    display:inline-block;
+    margin:5px 0px 5px 0px;
+
+}
+
+[data-row="1"] {
+    position:absolute;
+    top:490px;
+}
+
+[data-row="2"] {
+    position:absolute;
+    top:440px;
+}
+[data-row="3"] {
+    position:absolute;
+    top:385px;
+}
+[data-row="4"] {
+    position:absolute;
+    top:330px;
+}
+[data-row="5"] {
+    position:absolute;
+    top:275px;
+}
+[data-row="6"] {
+    position:absolute;
+    top:220px;
+}
+[data-row="7"] {
+    position:absolute;
+    top:165px;
+}
+[data-row="8"] {
+    position:absolute;
+    top:110px;
+}
+[data-row="9"] {
+    position:absolute;
+    top:55px;
+}
+[data-row="10"] {
+    position:absolute;
+    top:0px;
+}
+
+.stat-board{
+    height:569px;
+    float:right;
+    position:relative;
+    top:-537px;
+    border:1px solid red;
+    width: 100px;
+    left: 80px;
+
+}
+
+
+.player-avatar{
+    background-image: url("catboy.png");
+    background-color: green;
+    border-radius: 50%;
+    width: 40px;
+    height: 30px;
+    left: 30px;
+    bottom: 20px;
+    position:absolute;
+    transition: left 2s linear,top 2s linear;
+}
+
+#reset-button{
+    margin-top:20px;
+    width:100px;
+
+}
+
+
+/*-------------------------------- dice css---------------------------------------------*/
+.scene {
+  perspective: 800px;
+  position:absolute;
+  border: 1px solid
+}
+.cube {
+  position:relative;
+  width: 50px;
+  height: 50px;
+  transform-style: preserve-3d;
+
+
+}
+
+.cube-animation{
+    animation: roll-dice 1s  linear 1;
+}
+.side {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border:1px solid black;
+  text-align: center;
+  background:white;
+}
+
+.side-pic{
+  position:absolute;
+  width: 50px;
+  height: 50px;
+  border:1px solid black;
+  text-align: center;
+  background:white;
+  display:none;
+
+}
+.back {
+  transform: translateZ(-25px);
+}
+.left {
+  transform: translateX(-25px) rotateY(90deg);
+}
+.right {
+  transform: translateX(25px) rotateY(90deg);
+}
+.top {
+  transform: translateY(-25px) rotateX(90deg);
+}
+.bottom {
+  transform: translateY(25px) rotateX(90deg);
+}
+.front {
+  transform: translateZ(25px);
+}
+/*.cube {
+  transform: rotateX(42deg);
+}*/
+
+.dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background-color:black;
+    margin:0px auto;
+    display:inline-block;
+}
+
+.single-line{
+    margin-top:15px;
+
+
+}
+
+.dice-img{
+    position:relative;
+    height:200px;
+    width:200px;
+}
+
+.roll-button{
+width:100px;
+height:20px;
+position:relative;
+}
+
+@keyframes roll-dice{
+    10%{transform:translateX(-50px) rotateX(180deg);}
+    20%{transform:translateX(-150px) rotateX(0deg);}
+    50%{transform:translateX(-100px) rotateY(270deg);}
+    100%{transform:translateZ(-100px) rotateX(90deg);}
+}
