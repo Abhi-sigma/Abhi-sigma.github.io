@@ -336,7 +336,8 @@
 				player.style.left=+getPosition().x-(55*steps)+"px";
 				updatePosition(player.style.left,player.style.top);
 				checkSnakesLadder();
-				if(currentPosition.x<=initialPositionX){
+				if(currentPosition.x <= initialPositionX+1 &&
+				currentPosition.x >= initialPositionX+1){
 					player.style.left=initialPositionX+"px";
 					alert("home");
 					reset();
