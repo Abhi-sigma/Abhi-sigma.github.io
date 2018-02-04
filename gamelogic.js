@@ -2,44 +2,44 @@
  //initialPositionX variable keeps track of how far is the grid form the window
 // left edge and adds 6.5px that is the wooden margin of the board.
 
-    var initialPositionX=parseInt($(".grid").position().left+6.5);
-    var initialPosition={"x":initialPositionX,"y":535}
-	var currentPosition={"x":0,"y":0}
-	var directionReversed=false;
-	var stepsLength=55;
-	var boardStart=$(".grid").position().left+6.5
-	var boardEnd=boardStart+$(".grid").width()-43.5;
-	var firstMove=true;
+var initialPositionX=parseInt($(".grid").position().left+6.5);
+var initialPosition={"x":initialPositionX,"y":535}
+var currentPosition={"x":0,"y":0}
+var directionReversed=false;
+var stepsLength=55;
+var boardStart=$(".grid").position().left+6.5
+var boardEnd=boardStart+$(".grid").width()-43.5;
+var firstMove=true;
 
 	// initialise the player on the current position on board
 
-    var player = document.querySelector(".player-avatar");
-    var button=document.getElementById("roll-button");
-    var reset_button=document.getElementById("reset-button");
-    button.addEventListener("click",selectDiceFace);
-    reset_button.addEventListener("click",reset);
+	var player = document.querySelector(".player-avatar");
+	var button=document.getElementById("roll-button");
+	var reset_button=document.getElementById("reset-button");
+	button.addEventListener("click",selectDiceFace);
+	reset_button.addEventListener("click",reset);
 
 
-    player.style.left = initialPosition.x-55+"px";
-    player.style.top = initialPosition.y+"px";
-    gameStart = false;
+	player.style.left = initialPosition.x-55+"px";
+	player.style.top = initialPosition.y+"px";
+	gameStart = false;
 
 
-    function reset(){
-    	gameStart = false;
-    	currentPosition={"x":0,"y":0};
-    	directionReversed=false;
-    	firstMove=true;
-    	initialPosition={"x":initialPositionX,"y":535};
-    	player.style.left = initialPosition.x-55+"px";
-        player.style.top = initialPosition.y+"px";
+	function reset(){
+		gameStart = false;
+		currentPosition={"x":0,"y":0};
+		directionReversed=false;
+		firstMove=true;
+		initialPosition={"x":initialPositionX,"y":535};
+		player.style.left = initialPosition.x-55+"px";
+		player.style.top = initialPosition.y+"px";
 
 
-    }
+	}
       //initialise the player in its position
 
 
-	function selectDiceFace(args){
+      function selectDiceFace(args){
 		// initialise all the dice face to display:none
 		// this makes sure all the dice face are not displayed by default
 		// even if they appeared in previous rolls
@@ -61,12 +61,12 @@
 		}
 	    // if block to avoid fail cases when roll results in 0
 	    if (randomSelect>0){
-			var visibleFace = elementArray[randomSelect-1];
-		}
+	    	var visibleFace = elementArray[randomSelect-1];
+	    }
 
-		else{
-			var visibleFace = elementArray[randomSelect];
-		}
+	    else{
+	    	var visibleFace = elementArray[randomSelect];
+	    }
 
 	    if((visibleFace.dataset.dice == 1 || visibleFace.dataset.dice == 6) && gameStart === false){
 	    	gameStart = true;
@@ -93,35 +93,35 @@
 		// counter=0;
 		var animationend=function(){
 			if (event.animationName == "roll-dice" &&
-               event.type.toLowerCase().indexOf("animationend") >= 0){
+				event.type.toLowerCase().indexOf("animationend") >= 0){
                // counter++
                // //console.log(counter);
                //console.log(visibleFace);
-			   visibleFace.style.display="block";
-			   button.style.display="block";
-			   animatingDice.classList.remove("cube-animation");
+               visibleFace.style.display="block";
+               button.style.display="block";
+               animatingDice.classList.remove("cube-animation");
 			   //console.log("animation fired");
 			   if(gameStart === true && firstMove === true ){
-			   	 firstMove=false;
-			   	 animatingDice.removeEventListener("animationend",animationend);
-			   	 return
-			   	}
+			   	firstMove=false;
+			   	animatingDice.removeEventListener("animationend",animationend);
+			   	return
+			   }
 			   if(gameStart === true){
-			   	  	movePlayer(parseInt(dicevalue));
-			   	  	animatingDice.removeEventListener("animationend",animationend);
-			   	  	return
-			   	}
-			    if(gameStart === false ){
+			   	movePlayer(parseInt(dicevalue));
+			   	animatingDice.removeEventListener("animationend",animationend);
+			   	return
+			   }
+			   if(gameStart === false ){
 	    	      //console.log("Try again");
-	    	       animatingDice.removeEventListener("animationend",animationend);
+	    	      animatingDice.removeEventListener("animationend",animationend);
 	    	      return
 
-			   	};
+	    	  };
 
-			}
-		 }
-		 animatingDice.addEventListener("animationend",animationend);
-		 }
+	    	}
+	    }
+	    animatingDice.addEventListener("animationend",animationend);
+	}
 
 
 	function movePlayer(steps){
@@ -144,11 +144,11 @@
                 //on top row
 
 
-				if(+currentPosition.x-(stepsLength*steps)>=initialPositionX){
-					player.style.left=+getPosition().x-(55*steps)+"px" ;
-					player.style.top=getPosition().y+(0*steps)+"px" ;
-					updatePosition(player.style.left,player.style.top);
-					checkSnakesLadder(steps);
+                if(+currentPosition.x-(stepsLength*steps)>=initialPositionX){
+                	player.style.left=+getPosition().x-(55*steps)+"px" ;
+                	player.style.top=getPosition().y+(0*steps)+"px" ;
+                	updatePosition(player.style.left,player.style.top);
+                	checkSnakesLadder(steps);
 					//console.log("reversed")
 					return
 				}
@@ -159,10 +159,10 @@
 					// the player.style.left calculates the position from left edge
 					// so we need to sustract one so that we dont calculate the individual box
 					// that the player is in.
-			        var stepsLeft=+steps-stepsTaken;
-			        player.style.top=(initialPosition.y-55)+"px";
-			        updatePosition(initialPositionX+"px",player.style.top);
-			        checkSnakesLadder(steps);
+					var stepsLeft=+steps-stepsTaken;
+					player.style.top=(initialPosition.y-55)+"px";
+					updatePosition(initialPositionX+"px",player.style.top);
+					checkSnakesLadder(steps);
 			        //console.log("reversing the reversed")
 			        if(stepsLeft <=1){
 
@@ -177,24 +177,24 @@
 
 			        }
 			        return
-				}
+			    }
 
 			}
 			//first time a direction change occurs
 			else {
-			directionReversed = true;
-			var stepsTaken=Math.round((boardEnd-currentPosition.x)/stepsLength);
-			var stepsLeft=+steps-stepsTaken;
-			player.style.left= boardEnd+"px";
-			player.style.top=(initialPosition.y-55)+"px";
-			updatePosition(player.style.left,player.style.top);
-			checkSnakesLadder(steps);
+				directionReversed = true;
+				var stepsTaken=Math.round((boardEnd-currentPosition.x)/stepsLength);
+				var stepsLeft=+steps-stepsTaken;
+				player.style.left= boardEnd+"px";
+				player.style.top=(initialPosition.y-55)+"px";
+				updatePosition(player.style.left,player.style.top);
+				checkSnakesLadder(steps);
 			//console.log("initial reversed");
 			if(stepsLeft <= 1){
 				player.style.left = boardEnd+"px";
-					return
-			        }
-			        else{
+				return
+			}
+			else{
 			        	// the player doesnt count the box from where it is moving but
 			        	// when the direction reverses, move to top denotes one step so we substract one from the stepsleft
 			        	player.style.left=boardEnd- stepsLength*(stepsLeft-1)+"px";
@@ -204,20 +204,20 @@
 			        	return
 
 			        }
-			}
+			    }
 
+
+			}
+		}
+
+
+
+		function getPosition(){
+			return initialPosition
 
 		}
-	}
 
-
-
-	function getPosition(){
-		return initialPosition
-
-	}
-
-	function updatePosition(left,bottom){
+		function updatePosition(left,bottom){
 		//console.log(arguments);
 		var pos = getPosition();
 		pos.x=parseInt(left.split("px")[0]);
@@ -251,7 +251,7 @@
 	function findRow(){
 		var row = 535-currentPosition.y
 		return row/55
-			}
+	}
 
 	var snakesAndLadder = {
 		0:{pos:[{x: parseInt(initialPositionX+55*7), y: 535,elevation:2,direction:-2}]},
@@ -259,95 +259,119 @@
 		4:{pos:[
 			{x: parseInt(initialPositionX+55*2), y: 315,elevation:3,direction:1},
 			{x: parseInt(initialPositionX+55*3), y: 315,elevation:-2,direction:-2},
-		    {x: parseInt(initialPositionX+55*5) , y: 315,elevation:-4,direction:-1},
-		    {x: parseInt(initialPositionX+55*7) , y: 315,elevation:-4,direction:1},
-		    {x: parseInt(initialPositionX+55*9 ) , y: 315,elevation:5,direction:0}
+			{x: parseInt(initialPositionX+55*5) , y: 315,elevation:-4,direction:-1},
+			{x: parseInt(initialPositionX+55*7) , y: 315,elevation:-4,direction:1},
+			{x: parseInt(initialPositionX+55*9 ) , y: 315,elevation:5,direction:0}
 
-		    ]},
-		5:{pos:[
-
-
-			  {x: parseInt(initialPositionX+55*5)  , y: 260,elevation:-5,direction:1},
-			  {x: parseInt(initialPositionX+55*6)  , y: 260,elevation:4,direction:1},
-			  {x: parseInt(initialPositionX+55*8) , y: 260,elevation:-4,direction:1},
-			  {x: parseInt(initialPositionX+55*1) , y: 260,elevation:-4,direction:2},
-		  ]},
-		 6:{pos:[
-			  {x: parseInt(initialPositionX+55*1)  , y: 205,elevation:3,direction:3},
-			  {x: parseInt(initialPositionX+55*3) , y: 205,elevation:-3,direction:1},
-			  {x: parseInt(initialPositionX+55*5)  , y: 205,elevation:2,direction:1},
-			  {x: parseInt(initialPositionX+55*8)  , y: 205,elevation:-3,direction:1},
-		  ]},
-		 7:{pos:[
-		    {x: parseInt(initialPositionX+55*0) , y: 150,elevation:2,direction:0},
-		    {x: parseInt(initialPositionX+55*7)  , y: 150,elevation:-7,direction:-7}
-		  ]},
-		 8:{pos:[
-		    {x: parseInt(initialPositionX+55*2) , y: 95,elevation:-7,direction:-1},
-		  ]},
-		 9:{pos:[
-		    {x: parseInt(initialPositionX+55*2) , y: 40,elevation:-7,direction:5},
-		    {x: parseInt(initialPositionX+55*5) , y: 40,elevation:-7,direction:-2},
-		    {x: parseInt(initialPositionX+55*8) , y: 40,elevation:-4,direction:1}
-		  ]},
+			]},
+			5:{pos:[
 
 
+				{x: parseInt(initialPositionX+55*5)  , y: 260,elevation:-5,direction:1},
+				{x: parseInt(initialPositionX+55*6)  , y: 260,elevation:4,direction:1},
+				{x: parseInt(initialPositionX+55*8) , y: 260,elevation:-4,direction:1},
+				{x: parseInt(initialPositionX+55*1) , y: 260,elevation:-4,direction:2},
+				]},
+				6:{pos:[
+					{x: parseInt(initialPositionX+55*1)  , y: 205,elevation:3,direction:3},
+					{x: parseInt(initialPositionX+55*3) , y: 205,elevation:-3,direction:1},
+					{x: parseInt(initialPositionX+55*5)  , y: 205,elevation:2,direction:1},
+					{x: parseInt(initialPositionX+55*8)  , y: 205,elevation:-3,direction:1},
+					]},
+					7:{pos:[
+						{x: parseInt(initialPositionX+55*0) , y: 150,elevation:2,direction:0},
+						{x: parseInt(initialPositionX+55*7)  , y: 150,elevation:-7,direction:-7}
+						]},
+						8:{pos:[
+							{x: parseInt(initialPositionX+55*2) , y: 95,elevation:-7,direction:-1},
+							]},
+							9:{pos:[
+								{x: parseInt(initialPositionX+55*2) , y: 40,elevation:-7,direction:5},
+								{x: parseInt(initialPositionX+55*5) , y: 40,elevation:-7,direction:-2},
+								{x: parseInt(initialPositionX+55*8) , y: 40,elevation:-4,direction:1}
+								]},
 
 
 
-	}
 
-	function checkSnakesLadder(steps){
+
+							}
+
+							function checkSnakesLadder(steps){
 		// run this function after 2 secs
 		// update position so that you can check direction
 		updatePosition(player.style.left,player.style.top);
 		setTimeout(function(){
-		var row=findRow();
-		if(snakesAndLadder.hasOwnProperty(row)){
-			snakesAndLadder[row].pos.forEach(function(item){
-			if((item.x >= currentPosition.x-1 && item.x < currentPosition.x+1) &&
-				(item.y >= currentPosition.y-1 && item.y < currentPosition.y+1)){
-				player.style.top = (currentPosition.y - stepsLength * item.elevation )+"px";
-			    player.style.left = (currentPosition.x + stepsLength  * item.direction) + "px";
-			    updatePosition(player.style.left,player.style.top);
-			    TopRowCheck(steps);
-			    if(findRow()%2==0){
-			    	directionReversed=false;
-			    }
-			    else{
-			    	directionReversed=true;
-			    }
-			}
-		})
+			var row=findRow();
+			if(snakesAndLadder.hasOwnProperty(row)){
+				snakesAndLadder[row].pos.forEach(function(item){
+					if((item.x >= currentPosition.x-1 && item.x < currentPosition.x+1) &&
+						(item.y >= currentPosition.y-1 && item.y < currentPosition.y+1)){
+						player.style.top = (currentPosition.y - stepsLength * item.elevation )+"px";
+					player.style.left = (currentPosition.x + stepsLength  * item.direction) + "px";
+					updatePosition(player.style.left,player.style.top);
+					TopRowCheck(steps);
+					if(findRow()%2==0){
+						directionReversed=false;
+					}
+					else{
+						directionReversed=true;
+					}
+				}
+			})
 
-		}
+			}
 
 		},2000)
 
 	}
 
 	function TopRowCheck(steps){
-		if(currentPosition.y<60){
+		if(currentPosition.y<60 && currentPosition.y != 0){
+			// special case for no. 80 which has direct ladder to 100
 			if(currentPosition.x <= initialPositionX+1 &&
 				currentPosition.x >= initialPositionX-1){
 				alert("home");
-				reset();
+			    reset();
+			    return true
 
-			}
+		}
+			// when in last row but still few steps left
 			if(currentPosition.x>=initialPositionX){
-				player.style.left=+getPosition().x-(55*steps)+"px";
-				updatePosition(player.style.left,player.style.top);
-				checkSnakesLadder();
-				if(currentPosition.x <= initialPositionX+1 &&
-				currentPosition.x >= initialPositionX+1){
+				// check if steps will lead player outside the 100 position
+				//
+				if(+getPosition().x-(55*steps)<=initialPositionX+1 &&
+					+getPosition().x-(55*steps)>=initialPositionX-1){
 					player.style.left=initialPositionX+"px";
-					alert("home");
-					reset();
-				}
-				updatePosition(player.style.left,player.style.top);
-				checkSnakesLadder();
+				alert("home");
+				reset();
 				return true
 			}
+				// if more steps than necessary
+				// for eg you are at 97 and six rolls out
+				if(+getPosition().x-(55*steps)<initialPositionX+5){
+					alert("try again");
+					return true
+				}
 
-					}
+				else{
+
+					player.style.left=+getPosition().x-(55*steps)+"px";
+					updatePosition(player.style.left,player.style.top);
+					checkSnakesLadder();
+					if(currentPosition.x <= initialPositionX+1 &&
+						currentPosition.x >= initialPositionX-1){
+						player.style.left=initialPositionX+"px";
+					alert("home");
+					reset();
+					return true
+				}
+
+			}
+			return true
+
+
+		}
+
 	}
+}

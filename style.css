@@ -131,7 +131,7 @@ padding:0px;
 .board-message{
     opacity: 0.5;
     background-color: black;
-     display: none;
+    display: none;
     position: relative;
     height: 200px;
     z-index: 100;
