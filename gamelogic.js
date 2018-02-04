@@ -43,7 +43,7 @@
 		// initialise all the dice face to display:none
 		// this makes sure all the dice face are not displayed by default
 		// even if they appeared in previous rolls
-		// console.log(event);
+		// //console.log(event);
 		// event.stopPropagation()
 		var button=document.querySelectorAll(".roll-button")[0];
 		button.style.display="none";
@@ -54,7 +54,7 @@
 
 		if(typeof(args)===typeof(1)){
 			var randomSelect=parseInt(args);
-			console.log(typeof(randomSelect));
+			//console.log(typeof(randomSelect));
 		}
 		else{
 			var randomSelect =Math.floor(Math.random()*7);
@@ -89,18 +89,18 @@
 		var animatingDice = document.querySelectorAll(".cube")[0];
 		animatingDice.classList.add("cube-animation");
 		var button=document.querySelectorAll(".roll-button")[0];
-		console.log(dicevalue);
+		//console.log(dicevalue);
 		// counter=0;
 		var animationend=function(){
 			if (event.animationName == "roll-dice" &&
                event.type.toLowerCase().indexOf("animationend") >= 0){
                // counter++
-               // console.log(counter);
-               console.log(visibleFace);
+               // //console.log(counter);
+               //console.log(visibleFace);
 			   visibleFace.style.display="block";
 			   button.style.display="block";
 			   animatingDice.classList.remove("cube-animation");
-			   console.log("animation fired");
+			   //console.log("animation fired");
 			   if(gameStart === true && firstMove === true ){
 			   	 firstMove=false;
 			   	 animatingDice.removeEventListener("animationend",animationend);
@@ -112,7 +112,7 @@
 			   	  	return
 			   	}
 			    if(gameStart === false ){
-	    	      console.log("Try again");
+	    	      //console.log("Try again");
 	    	       animatingDice.removeEventListener("animationend",animationend);
 	    	      return
 
@@ -126,7 +126,7 @@
 
 	function movePlayer(steps){
 		var player = document.querySelector(".player-avatar");
-		console.log(+currentPosition.x+(55*steps));
+		//console.log(+currentPosition.x+(55*steps));
 		if(TopRowCheck(steps)){
 			return
 		};
@@ -134,8 +134,8 @@
 			player.style.left=+getPosition().x+(stepsLength*steps)+"px" ;
 			player.style.top=getPosition().y+(0*steps)+"px" ;
 			updatePosition(player.style.left,player.style.top);
-			checkSnakesLadder();
-			console.log("not reversed")
+			checkSnakesLadder(steps);
+			//console.log("not reversed")
 			return
 		}
 		else  {
@@ -148,8 +148,8 @@
 					player.style.left=+getPosition().x-(55*steps)+"px" ;
 					player.style.top=getPosition().y+(0*steps)+"px" ;
 					updatePosition(player.style.left,player.style.top);
-					checkSnakesLadder();
-					console.log("reversed")
+					checkSnakesLadder(steps);
+					//console.log("reversed")
 					return
 				}
 				else{
@@ -162,8 +162,8 @@
 			        var stepsLeft=+steps-stepsTaken;
 			        player.style.top=(initialPosition.y-55)+"px";
 			        updatePosition(initialPositionX+"px",player.style.top);
-			        checkSnakesLadder();
-			        console.log("reversing the reversed")
+			        checkSnakesLadder(steps);
+			        //console.log("reversing the reversed")
 			        if(stepsLeft <=1){
 
 			        }
@@ -171,8 +171,8 @@
 			        	// same logic here
 			        	player.style.left=boardStart+stepsLength*+(stepsLeft-1)+"px";
 			        	updatePosition(player.style.left,player.style.top);
-			        	checkSnakesLadder();
-			        	console.log("reversing the reversed else block")
+			        	checkSnakesLadder(steps);
+			        	//console.log("reversing the reversed else block")
 			        	return
 
 			        }
@@ -188,8 +188,8 @@
 			player.style.left= boardEnd+"px";
 			player.style.top=(initialPosition.y-55)+"px";
 			updatePosition(player.style.left,player.style.top);
-			checkSnakesLadder();
-			console.log("initial reversed");
+			checkSnakesLadder(steps);
+			//console.log("initial reversed");
 			if(stepsLeft <= 1){
 				player.style.left = boardEnd+"px";
 					return
@@ -199,8 +199,8 @@
 			        	// when the direction reverses, move to top denotes one step so we substract one from the stepsleft
 			        	player.style.left=boardEnd- stepsLength*(stepsLeft-1)+"px";
 			        	updatePosition(player.style.left,player.style.top);
-			        	checkSnakesLadder();
-			        	console.log("initial reversed else block");
+			        	checkSnakesLadder(steps);
+			        	//console.log("initial reversed else block");
 			        	return
 
 			        }
@@ -218,12 +218,12 @@
 	}
 
 	function updatePosition(left,bottom){
-		console.log(arguments);
+		//console.log(arguments);
 		var pos = getPosition();
 		pos.x=parseInt(left.split("px")[0]);
 		pos.y=parseInt(bottom.split("px")[0]);
 		currentPosition=pos;
-		// console.log(currentPosition);
+		// //console.log(currentPosition);
 
 	}
 
@@ -297,11 +297,10 @@
 
 	}
 
-	function checkSnakesLadder(){
+	function checkSnakesLadder(steps){
 		// run this function after 2 secs
 		// update position so that you can check direction
 		updatePosition(player.style.left,player.style.top);
-		TopRowCheck();
 		setTimeout(function(){
 		var row=findRow();
 		if(snakesAndLadder.hasOwnProperty(row)){
@@ -311,6 +310,7 @@
 				player.style.top = (currentPosition.y - stepsLength * item.elevation )+"px";
 			    player.style.left = (currentPosition.x + stepsLength  * item.direction) + "px";
 			    updatePosition(player.style.left,player.style.top);
+			    TopRowCheck(steps);
 			    if(findRow()%2==0){
 			    	directionReversed=false;
 			    }
@@ -329,12 +329,12 @@
 	function TopRowCheck(steps){
 		if(currentPosition.y<60){
 			if(currentPosition.x <= initialPositionX+1 &&
-				currentPosition.x >= initialPositionX+1){
+				currentPosition.x >= initialPositionX-1){
 				alert("home");
 				reset();
 
 			}
-			if(currentPosition.x>initialPositionX){
+			if(currentPosition.x>=initialPositionX){
 				player.style.left=+getPosition().x-(55*steps)+"px";
 				updatePosition(player.style.left,player.style.top);
 				checkSnakesLadder();
